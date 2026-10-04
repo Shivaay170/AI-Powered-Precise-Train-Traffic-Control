@@ -1,0 +1,770 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #2196F3;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #2196F3;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #87CEEB;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: #333;
+            color: #2196F3;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            border: 1px solid #2196F3;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 90vh;
+        }
+
+        .panel {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+
+        .panel h2 {
+            margin-bottom: 15px;
+            color: #2196F3;
+            font-size: 1.5em;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .api-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .api-status.offline {
+            border-left-color: #f44336;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.offline {
+            background: #f44336;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .route-map {
+            height: 600px;
+            background: #0a0a0a;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #2196F3;
+            margin-bottom: 20px;
+        }
+
+        /* Railway Track Styles */
+        .track {
+            position: absolute;
+            background: linear-gradient(90deg, #555 0%, #777 50%, #555 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(255,255,255,0.2);
+        }
+
+        .track::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #333;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Main horizontal tracks */
+        .track-main-1 {
+            width: 90%;
+            height: 6px;
+            top: 15%;
+            left: 5%;
+        }
+
+        .track-main-2 {
+            width: 85%;
+            height: 6px;
+            top: 35%;
+            left: 10%;
+        }
+
+        .track-main-3 {
+            width: 90%;
+            height: 6px;
+            top: 55%;
+            left: 5%;
+        }
+
+        .track-main-4 {
+            width: 80%;
+            height: 6px;
+            top: 75%;
+            left: 15%;
+        }
+
+        /* Vertical connecting tracks */
+        .track-vertical-1 {
+            height: 40%;
+            width: 6px;
+            left: 25%;
+            top: 15%;
+        }
+
+        .track-vertical-2 {
+            height: 45%;
+            width: 6px;
+            left: 50%;
+            top: 35%;
+        }
+
+        .track-vertical-3 {
+            height: 25%;
+            width: 6px;
+            right: 25%;
+            top: 55%;
+        }
+
+        /* Diagonal connecting tracks */
+        .track-diagonal-1 {
+            width: 35%;
+            height: 6px;
+            left: 25%;
+            top: 25%;
+            transform: rotate(25deg);
+            transform-origin: left center;
+        }
+
+        .track-diagonal-2 {
+            width: 30%;
+            height: 6px;
+            right: 25%;
+            top: 45%;
+            transform: rotate(-20deg);
+            transform-origin: right center;
+        }
+
+        /* Railway Stations */
+        .station {
+            position: absolute;
+            background: #2196F3;
+            border: 3px solid #fff;
+            border-radius: 8px;
+            z-index: 15;
+            padding: 5px 10px;
+            font-size: 0.7em;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            min-width: 80px;
+            box-shadow: 0 0 15px rgba(33,150,243,0.6);
+        }
+
+        .station-major {
+            background: #f44336;
+            border-color: #ffeb3b;
+            font-size: 0.8em;
+            min-width: 100px;
+            padding: 6px 12px;
+        }
+
+        /* Railway Signals */
+        .signal {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            z-index: 10;
+        }
+
+        .signal-pole {
+            width: 3px;
+            height: 30px;
+            background: #666;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .signal-light {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid #333;
+        }
+
+        .signal-light.red {
+            background: #f44336;
+            top: 2px;
+            box-shadow: 0 0 10px #f44336;
+        }
+
+        .signal-light.yellow {
+            background: #ffeb3b;
+            top: 11px;
+            box-shadow: 0 0 10px #ffeb3b;
+        }
+
+        .signal-light.green {
+            background: #4CAF50;
+            top: 20px;
+            box-shadow: 0 0 10px #4CAF50;
+        }
+
+        .signal-light.active {
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Train Styles with Priority Colors */
+        .train {
+            position: absolute;
+            min-width: 60px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.8s ease;
+            z-index: 20;
+            cursor: pointer;
+            border: 2px solid;
+            text-align: center;
+            padding: 0 3px;
+        }
+
+        /* Priority-based train colors */
+        .train.priority-1 { /* Super Express - Highest Priority */
+            background: linear-gradient(45deg, #9C27B0, #7B1FA2);
+            border-color: #4A148C;
+        }
+
+        .train.priority-2 { /* Express trains */
+            background: linear-gradient(45deg, #f44336, #D32F2F);
+            border-color: #B71C1C;
+        }
+
+        .train.priority-3 { /* Shatabdi/Rajdhani */
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+            border-color: #E65100;
+        }
+
+        .train.priority-4 { /* Regular Express */
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            border-color: #0D47A1;
+        }
+
+        .train.priority-5 { /* Local/Passenger - Lowest Priority */
+            background: linear-gradient(45deg, #4CAF50, #388E3C);
+            border-color: #2E7D32;
+        }
+
+        .train.slowing {
+            background: linear-gradient(45deg, #FF9800, #F57C00) !important;
+            animation: warning-pulse 1s infinite;
+        }
+
+        @keyframes warning-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .train.stopped {
+            background: linear-gradient(45deg, #f44336, #D32F2F) !important;
+            animation: danger-blink 0.5s infinite;
+        }
+
+        @keyframes danger-blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #1976D2, #1565C0);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn.emergency {
+            background: linear-gradient(45deg, #f44336, #D32F2F);
+        }
+
+        .btn.emergency:hover {
+            background: linear-gradient(45deg, #D32F2F, #B71C1C);
+        }
+
+        .btn.optimize {
+            background: linear-gradient(45deg, #4CAF50, #388E3C);
+        }
+
+        .btn.optimize:hover {
+            background: linear-gradient(45deg, #388E3C, #2E7D32);
+        }
+
+        .btn.toggle {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+        }
+
+        .btn.toggle:hover {
+            background: linear-gradient(45deg, #F57C00, #E65100);
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #555;
+            transition: all 0.3s ease;
+        }
+
+        .metric:hover {
+            border-color: #2196F3;
+            transform: translateY(-2px);
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.8em;
+            color: #87CEEB;
+            font-weight: 500;
+        }
+
+        .metric-detail {
+            font-size: 0.7em;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .schedule-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #0a0a0a;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            background: #1a1a1a;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        .train-info {
+            flex: 1;
+        }
+
+        .train-name {
+            font-weight: bold;
+            color: #2196F3;
+            font-size: 0.9em;
+        }
+
+        .train-route {
+            font-size: 0.75em;
+            color: #87CEEB;
+            margin-top: 2px;
+        }
+
+        .train-priority {
+            font-size: 0.7em;
+            color: #ffeb3b;
+            margin-top: 1px;
+        }
+
+        .status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .status.ontime {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status.delayed {
+            background: #f44336;
+            color: white;
+        }
+
+        .status.slowing {
+            background: #FF9800;
+            color: white;
+        }
+
+        .status.stopped {
+            background: #f44336;
+            color: white;
+            animation: blink 0.5s infinite;
+        }
+
+        .ai-panel {
+            background: #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #555;
+        }
+
+        .optimization-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .optimization-indicator {
+            width: 15px;
+            height: 15px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .optimization-indicator.idle {
+            background: #666;
+            animation: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .optimization-text {
+            font-weight: 600;
+            color: #2196F3;
+            font-size: 0.9em;
+        }
+
+        .console-output {
+            background: #000;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75em;
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 1px solid #333;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a1a1a;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            border-left-color: #f44336;
+            background: #2a0a0a;
+        }
+
+        .notification.warning {
+            border-left-color: #FF9800;
+            background: #2a1a0a;
+        }
+
+        .priority-legend {
+            background: #333;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0;
+            font-size: 0.8em;
+        }
+
+        .priority-color {
+            width: 20px;
+            height: 12px;
+            border-radius: 6px;
+            border: 1px solid #555;
+        }
+
+        /* New styles for added features */
+        .ai-explanation-panel {
+            background: #2a2a3a;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ai-explanation-header {
+            color: #4CAF50;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-brain-icon {
+            width: 20px;
+            height: 20px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+        }
+
+        .ai-decision {
+            background: #1a1a2a;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+            font-size: 0.85em;
+            color: #e0e0e0;
+        }
+
+        .delay-prediction-panel {
+            background: #2a1a1a;
+            border: 2px solid #FF9800;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .prediction-header {
+            color: #FF9800;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .prediction-item {
+            background: #1a1a1a;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            font-size: 0.8em;
+            border-left: 3px solid #FF9800;
+        }
+
+        .ai-recommendations-panel {
+            background: #1a2a1a;
+            border: 2px solid #9C27B0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .recommendations-header {
+            color: #9C27B0;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-item {
+            background: #1a1a1a;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            font-size: 0.8em;
+            border-left: 3px solid #9C27B0;
+        }
+
+        .mode-indicator {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            z-index: 25;
+        }
+
+        .mode-indicator.ai-mode {
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+
+        .mode-indicator.manual-mode {
+            color: #f44336;
+            border: 2px solid #f44336;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .route-map {
+                height: 400px;
+            }
+            
+            .metrics {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .station {
+                font-size: 0.6em;
+                min-width: 60px;
+                padding: 3px 6px;
+            }
+        }
+    

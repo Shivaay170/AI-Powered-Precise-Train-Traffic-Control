@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI-Powered Precise Train Traffic Control</title>
+
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<div class="header">
+<h1>Train Traffic Management System</h1>
+<p class="subtitle">AI-Powered Precise Train Traffic Control</p>
+<div class="tech-stack">
+<div class="tech-badge">Smart Signaling</div>
+<div class="tech-badge">Priority Management</div>
+<div class="tech-badge">Collision Avoidance</div>
+<div class="tech-badge">Real-time Control</div>
+</div>
+</div>
+<div class="dashboard">
+<!-- Left Panel - Route Map -->
+<div class="panel">
+<h2>Railway Network Route Map</h2>
+<div class="api-status" id="apiStatus">
+<div>
+<strong>System Status:</strong>
+<span id="backendStatus">Initializing...</span>
+</div>
+<div class="status-dot" id="statusDot"></div>
+</div>
+<div class="controls">
+<button class="btn" id="connectBtn" onclick="connectSystem()">Connect System</button>
+<button class="btn" id="optimizeBtn" onclick="startOptimization()">Start Traffic Control</button>
+<button class="btn toggle" id="modeToggleBtn" onclick="toggleMode()">Switch to Manual Mode</button>
+<button class="btn emergency" id="emergencyBtn" onclick="emergencyProtocol()">Emergency Stop</button>
+<button class="btn optimize" id="dataBtn" onclick="fetchLiveData()">Refresh Signals</button>
+</div>
+<div class="route-map" id="routeMap">
+<div class="mode-indicator ai-mode" id="modeIndicator">AI Control Active</div>
+<!-- Main Horizontal Tracks -->
+<div class="track track-main-1"></div>
+<div class="track track-main-2"></div>
+<div class="track track-main-3"></div>
+<div class="track track-main-4"></div>
+<!-- Vertical Connecting Tracks -->
+<div class="track track-vertical-1"></div>
+<div class="track track-vertical-2"></div>
+<div class="track track-vertical-3"></div>
+<!-- Diagonal Connecting Tracks -->
+<div class="track track-diagonal-1"></div>
+<div class="track track-diagonal-2"></div>
+<!-- Major Railway Stations -->
+<div class="station station-major" style="left: 2%; top: 12%;">NEW DELHI</div>
+<div class="station station-major" style="right: 2%; top: 12%;">MUMBAI CST</div>
+<div class="station" style="left: 25%; top: 8%;">Ghaziabad</div>
+<div class="station" style="left: 48%; top: 8%;">Kanpur</div>
+<div class="station" style="left: 75%; top: 8%;">Allahabad</div>
+<div class="station station-major" style="left: 8%; top: 32%;">BANGALORE</div>
+<div class="station station-major" style="right: 8%; top: 32%;">CHENNAI</div>
+<div class="station" style="left: 35%; top: 28%;">Hubli</div>
+<div class="station" style="left: 65%; top: 28%;">Salem</div>
+<div class="station station-major" style="left: 2%; top: 52%;">KOLKATA</div>
+<div class="station station-major" style="right: 2%; top: 52%;">HYDERABAD</div>
+<div class="station" style="left: 25%; top: 48%;">Asansol</div>
+<div class="station" style="right: 25%; top: 48%;">Warangal</div>
+<div class="station station-major" style="left: 15%; top: 72%;">PUNE</div>
+<div class="station station-major" style="right: 15%; top: 72%;">AHMEDABAD</div>
+<!-- Railway Signals -->
+<div class="signal" id="signal-1" style="left: 20%; top: 10%;">
+<div class="signal-pole"></div>
+<div class="signal-light red active"></div>
+<div class="signal-light yellow"></div>
+<div class="signal-light green"></div>
+</div>
+<div class="signal" id="signal-2" style="left: 45%; top: 30%;">
+<div class="signal-pole"></div>
+<div class="signal-light red"></div>
+<div class="signal-light yellow active"></div>
+<div class="signal-light green"></div>
+</div>
+<div class="signal" id="signal-3" style="right: 30%; top: 50%;">
+<div class="signal-pole"></div>
+<div class="signal-light red"></div>
+<div class="signal-light yellow"></div>
+<div class="signal-light green active"></div>
+</div>
+<div class="signal" id="signal-4" style="left: 30%; top: 70%;">
+<div class="signal-pole"></div>
+<div class="signal-light red"></div>
+<div class="signal-light yellow active"></div>
+<div class="signal-light green"></div>
+</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-value" id="throughputValue">--</div>
+<div class="metric-label">Trains/Hour</div>
+<div class="metric-detail" id="throughputDetail">Network capacity</div>
+</div>
+<div class="metric">
+<div class="metric-value" id="delayValue">--</div>
+<div class="metric-label">Avg Delay</div>
+<div class="metric-detail" id="delayDetail">Minutes delayed</div>
+</div>
+<div class="metric">
+<div class="metric-value" id="efficiencyValue">--</div>
+<div class="metric-label">Priority Control</div>
+<div class="metric-detail" id="efficiencyDetail">Traffic optimization</div>
+</div>
+<div class="metric">
+<div class="metric-value" id="energyValue">--</div>
+<div class="metric-label">Energy Saved</div>
+<div class="metric-detail" id="energyDetail">Smart optimization</div>
+</div>
+</div>
+</div>
+<!-- Right Panel - Control & Schedule -->
+<div class="panel">
+<h2>Train Control &amp; Priority Management</h2>
+<!-- AI Decision Explanation Panel -->
+<div class="ai-explanation-panel" id="aiExplanationPanel">
+<div class="ai-explanation-header">
+<div class="ai-brain-icon">AI</div>
+                    AI Decision Explanation
+                </div>
+<div id="aiDecisionsList">
+<div class="ai-decision">System initialized - Awaiting connection</div>
+</div>
+</div>
+<!-- Delay Prediction Panel -->
+<div class="delay-prediction-panel" id="delayPredictionPanel">
+<div class="prediction-header">Predictive Delay Analysis</div>
+<div id="delayPredictionsList">
+<div class="prediction-item">Connect system to view delay predictions</div>
+</div>
+</div>
+<!-- AI Recommendations Panel -->
+<div class="ai-recommendations-panel" id="aiRecommendationsPanel">
+<div class="recommendations-header">AI Recommendations</div>
+<div id="aiRecommendationsList">
+<div class="recommendation-item">System ready - Connect to receive AI insights</div>
+</div>
+</div>
+<div class="priority-legend">
+<h4 style="color: #2196F3; margin-bottom: 8px;">Train Priority Levels</h4>
+<div class="priority-item">
+<div class="priority-color" style="background: linear-gradient(45deg, #9C27B0, #7B1FA2);"></div>
+<span>Priority 1: Vande Bharat (Highest)</span>
+</div>
+<div class="priority-item">
+<div class="priority-color" style="background: linear-gradient(45deg, #f44336, #D32F2F);"></div>
+<span>Priority 2: Shatabdi/Rajdhani</span>
+</div>
+<div class="priority-item">
+<div class="priority-color" style="background: linear-gradient(45deg, #FF9800, #F57C00);"></div>
+<span>Priority 3: Express Trains</span>
+</div>
+<div class="priority-item">
+<div class="priority-color" style="background: linear-gradient(45deg, #2196F3, #1976D2);"></div>
+<span>Priority 4: Superfast Trains</span>
+</div>
+<div class="priority-item">
+<div class="priority-color" style="background: linear-gradient(45deg, #4CAF50, #388E3C);"></div>
+<span>Priority 5: Passenger/Local</span>
+</div>
+</div>
+<div class="ai-panel">
+<div class="optimization-status">
+<div class="optimization-indicator idle" id="optimizationIndicator"></div>
+<span class="optimization-text" id="optimizationText">Priority Control: Idle</span>
+</div>
+<div class="console-output" id="consoleOutput">
+                    Railway Priority Management System v4.1<br/>
+                    Loading train priority database...<br/>
+                    Signal coordination systems ready...<br/>
+</div>
+</div>
+<div class="schedule-list" id="scheduleList">
+<div style="text-align: center; color: #666; padding: 20px;">
+                    Connect system to load live train schedules
+                </div>
+</div>
+</div>
+</div>
+<div class="notification" id="notification">
+<div id="notificationText"></div>
+</div>
+
+<script src="script.js"></script></body>
+</html>
